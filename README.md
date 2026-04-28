@@ -94,5 +94,5 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
 
 ## Contato
 
-Desenvolvido por [**Rafael**](https://github.com/lilianlacerda)
+Desenvolvido por [**Lilian Lacerda**](https://github.com/lilianlacerda)
 Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
