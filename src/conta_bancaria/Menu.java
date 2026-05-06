@@ -82,14 +82,14 @@ public class Menu {
 				break;
 			case 4:
 				System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n\n");
-				
+
 				atualizarConta();
 
 				keyPress();
 				break;
 			case 5:
 				System.out.println(Cores.TEXT_WHITE + "Apagar a Conta\n\n");
-				
+
 				deletarConta();
 
 				keyPress();
@@ -97,15 +97,21 @@ public class Menu {
 			case 6:
 				System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
 
+				sacar();
+
 				keyPress();
 				break;
 			case 7:
 				System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
 
+				depositar();
+
 				keyPress();
 				break;
 			case 8:
 				System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
+				
+				transferir();
 
 				keyPress();
 				break;
@@ -125,6 +131,11 @@ public class Menu {
 		System.out.println("github.com/lilianlacerda                                        ");
 		System.out.println("                                                                ");
 		System.out.println("**************************************************************");
+	}
+
+	public static void keyPress() {
+		System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+		leia.nextLine();
 	}
 
 	private static void listarContas() {
@@ -238,27 +249,59 @@ public class Menu {
 			System.out.printf("\nA conta número %d não foi encontrada!\n", numero);
 		}
 	}
-	
+
 	private static void deletarConta() {
-		
+
 		System.out.print("Digite o número da conta: ");
-	    int numero = leia.nextInt();
-	    leia.nextLine();
+		int numero = leia.nextInt();
+		leia.nextLine();
 
-	    System.out.print("\nTem certeza que deseja excluir esta conta? (S/N): ");
-	    String confirmacao = leia.nextLine();
+		System.out.print("\nTem certeza que deseja excluir esta conta? (S/N): ");
+		String confirmacao = leia.nextLine();
 
-	    if (confirmacao.equalsIgnoreCase("S")) {
-	        contaController.deletar(numero);
-	    } else {
-	        System.out.println("\nOperação cancelada.");
-	    }
-		
+		if (confirmacao.equalsIgnoreCase("S")) {
+			contaController.deletar(numero);
+		} else {
+			System.out.println("\nOperação cancelada.");
+		}
+
 	}
 
-	public static void keyPress() {
-		System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
-		leia.nextLine();
+	private static void sacar() {
+
+		System.out.print("Digite o número da conta: ");
+		int numero = leia.nextInt();
+
+		System.out.print("Digite o valor do saque: ");
+		float valor = leia.nextFloat();
+
+		contaController.sacar(numero, valor);
+
+	}
+
+	private static void depositar() {
+
+		System.out.print("Digite o número da conta: ");
+		int numero = leia.nextInt();
+
+		System.out.print("Digite o valor do depósito: ");
+		float valor = leia.nextFloat();
+
+		contaController.depositar(numero, valor);
+	}
+	
+	private static void transferir() {
+		
+		System.out.print("Digite o número da conta de origem: ");
+		int numeroOrigem = leia.nextInt();
+		
+		System.out.print("Digite o número da conta de destino: ");
+		int numeroDestino = leia.nextInt();
+
+		System.out.print("Digite o valor da transferência: ");
+		float valor = leia.nextFloat();
+		
+		contaController.transferir(numeroOrigem, numeroDestino, valor);
 	}
 
 }
